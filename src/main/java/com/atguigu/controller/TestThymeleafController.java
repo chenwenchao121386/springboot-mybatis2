@@ -46,6 +46,9 @@ public class TestThymeleafController {
         Map<String, Object> map =new HashMap<>();
         String date = "2020";
         map.put("city", "北京");
+
+        String city = "北京";
+        map.put("city", city);
         map.put("date", "2020");
         map.put("address", "尚硅谷");
         model.addAttribute("map", map);
