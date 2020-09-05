@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!--这句声明使用thymeleaf标签-->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Thymeleaf的入门</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<table border="1">
+    <tr>
+        <th>下标</th>
+        <th>学号</th>
+        <th>姓名</th>
+        <th>分数</th>
+    </tr>
+    <tr th:each="student,studentStat:${studnets}">
+        <td><span th:text="${studentStat.index+1}"></span></td>
+        <td th:text="${student.id}"></td>
+        <td th:text="${student.name}"></td>
+        <td th:text="${student.score}"></td>
+    </tr>
+</table>
+<p>取map方式一：知道map的每一个key</p>
+<div>
+    城市：<span th:text="${map.city}"></span><br>
+    时间：<span th:text="${map.date}"></span><br>
+    地址：<span th:text="${map.address}"></span><br>
+</div>
+<p>取map方式二：不知道key</p>
+<div th:each="daMap:${map}">
+<span th:text="${daMap.key}"></span>&nbsp;&nbsp;
+<span th:text="${daMap.value}"></span>
+    <br>
+</div>
+
+<p>取数组</p>
+<div th:each="nms,nmsStat:${names}">
+    <span th:text="${nmsStat.count}"></span>
+    <span th:text="${nms}"></span>
+</div>
+<p>取时间</p>
+<div>
+    <span th:text="${#dates.format(now,'yyyy-MM-dd HH:mm:ss')}"></span>
+</div>
+
+<p>th:if判断条件</p>
+<div>
+    <span th:if="${money>60}">钱够！</span><br>
+    <span th:if="${money<60}">钱不够！演员未定，剧本暂无，敬请期待！</span><br>
+    <span th:unless="${money<60}">钱不够！演员未定，剧本暂无，敬请期待！</span><br>
+</div>
+
+<div th:include="footer::copy"></div>
+</body>
+</html>
